@@ -1,0 +1,85 @@
+body{
+    background-color: black;
+    background-image: url('../images/bg.jpg');
+    background: url('../../images/bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.winner{
+    color:green;
+}
+
+.loser{color:red;}
+
+
+.player1{background-color:blue;
+color:white;
+padding:1.5rem;
+border-radius:15px;
+border:0px;}
+
+.player2{background-color: red;
+    border:0px;
+    padding:1.5rem;
+    border-radius:15px;
+}
+
+
+button.player1:hover {
+    background-color:grey;
+   
+}
+button.player1:active{
+    background-color:rgb(83, 83, 83);
+}
+
+
+ button.player2:hover {
+     background-color:grey;
+   
+}
+button.player2:active{
+    background-color:rgb(83, 83, 83);
+}
+
+
+
+button#reset:hover{
+    background-color:darkgray;
+}
+button#reset:active{
+    background-color:rgb(83, 83, 83);
+}
+
+#reset{
+    background-color: yellow;
+    border:0px;
+    width:20rem;
+    margin-top:3rem;
+    padding:2rem;
+    margin:1rem;
+    border-radius:30px;
+}
+
+#player1panel{
+    width:20rem;
+    display:inline-block;
+    margin:1rem;
+}
+
+#player2panel{
+    width:20rem;
+    display:inline-block;
+    margin:1rem;
+}
+
+#footer{
+    width:50rem;
+    display:block;
+    margin:auto;
+}
+
+button {
+    touch-action: manipulation;
+}
