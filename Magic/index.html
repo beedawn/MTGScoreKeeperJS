@@ -11,24 +11,36 @@
 
 
 <body>
-<h1>Magic The Gathering Score Keeper</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+<div class="header col-6"><h1>Magic The Gathering Score Keeper</h1></div></div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3">
 <div id="player1panel" class="card">
     <div class="card-body">
-    <h2 class="card-title">Player 1 </h2><h3>Health: <span id="p1Display">20</span></h3>
+    <h2 class="card-title"><span id="p1Name">Player 1 </span></h2><input id="p1NameIn" type="text" placeholder="Player 1 Name"></input>
+        <button id="p1Submit" class="player1">Submit Name</button>
+        
+        <h3>Health: <span id="p1Display">20</span></h3>
     
-    <button class="player1" id="p1Button">+1 Player 1</button>
-    <button class="player1" id="p1ButtonMinus">-1 Player 1</button>
-</div></div>
+    <button class="player1" id="p1Button">+1 Life</button>
+    <button class="player1" id="p1ButtonMinus">-1 Life</button>
+    <p><button class="player1 changeName" id="p1ChangeName">Change Name</button></p>
+</div></div></div>
+<div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3">
 <div id="player2panel" class="card">
     <div class="card-body">
-    <h2 class="card-title">Player 2</h2> </h3><h3>Health: <span id="p2Display">20</span></h3>
-    <button class="player2" id="p2Button">+1 Player 2</button>
-    <button class="player2" id="p2ButtonMinus">-1 Player 2</button>
-</div></div>
-    <div id="footer"><button id="reset">Reset</button></div>
-    <script src="js/mine/app.js"></script>
-
-
+    <h2 class="card-title"><span id="p2Name">Player 2</span></h2> <input id="p2NameIn" type="text" placeholder="Player 2 Name"></input>
+    <button id="p2Submit" class="player2">Submit Name</button>
+    <h3>Health: <span id="p2Display">20</span></h3>
+    <button class="player2" id="p2Button">+1 Life</button>
+    <button class="player2" id="p2ButtonMinus">-1 Life</button>
+    <p><button class="player2 changeName" id="p2ChangeName">Change Name</button></p>
+</div></div></div></div>
+<div class="row justify-content-center"> <div class="col-12 col-md-6"><div id="footer"><button id="reset">Reset</button></div></div></div>
+    
+</div>
+<script src="js/mine/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
