@@ -19,7 +19,18 @@ let p1Score = 20;
 let p2Score = 20;
 let losingScore = 0;       
 let isGameOver = false;
+let p1GameOver = '';
+let p2GameOver = '';
 
+function toggleButtons(){
+    p2ButtonMinus.classList.toggle('hide');
+    p2Button.classList.toggle('hide');
+    p1ButtonMinus.classList.toggle('hide');
+    p1Button.classList.toggle('hide');
+    p1ChangeName.classList.toggle('hide');
+    p2ChangeName.classList.toggle('hide');
+
+}
 
 
 p1Button.addEventListener('click', function(){
@@ -28,8 +39,11 @@ p1Button.addEventListener('click', function(){
             p1Score+=1;
             if(p1Score===losingScore){
                 isGameOver=true;
+                hideNameSubmit();
                 p1Display.classList.add('winner');
                 p2Display.classList.add('loser');
+                toggleButtons();
+
             }
             p1Display.innerText = p1Score;
 }
@@ -43,8 +57,10 @@ p2Button.addEventListener('click', function(){
             p2Score+=1;
             if(p2Score===losingScore){
                 isGameOver=true;
+                hideNameSubmit();
                 p2Display.classList.add('winner');
                 p1Display.classList.add('loser');
+                toggleButtons();
 
             }
             p2Display.innerText = p2Score;
@@ -60,8 +76,14 @@ p1ButtonMinus.addEventListener('click', function(){
             p1Score-=1;
             if(p1Score===losingScore){
                 isGameOver=true;
+                hideNameSubmit();
                 p1Display.classList.add('loser');
                 p2Display.classList.add('winner');
+                toggleButtons();
+                p1GameOver= p1Name.innerText;
+                p2GameOver= p2Name.innerText;
+                p1Name.innerText = `${p1GameOver}, lost!`;
+                p2Name.innerText = `${p2GameOver}, Won!`;
             }
             p1Display.innerText = p1Score;
 }
@@ -75,8 +97,15 @@ p2ButtonMinus.addEventListener('click', function(){
             p2Score-=1;
             if(p2Score===losingScore){
                 isGameOver=true;
+                hideNameSubmit();
                 p1Display.classList.add('winner');
                 p2Display.classList.add('loser');
+                toggleButtons();
+               p2GameOver= p2Name.innerText;
+                p1GameOver= p1Name.innerText;
+                p2Name.innerText = `${p2GameOver}, lost!`;
+                p1Name.innerText= `${p1GameOver}, Won!`;
+
 
             }
             p2Display.innerText = p2Score;
@@ -95,11 +124,23 @@ p2ButtonMinus.addEventListener('click', function(){
 function resetFunc(){
     p1Score = 20;
         p2Score = 20;
+        
         p2Display.innerText = p2Score;
         p1Display.innerText = p1Score;
         isGameOver=false;
         p1Display.classList.remove('winner', 'loser');
         p2Display.classList.remove('loser', 'winner');
+        p2ButtonMinus.classList.remove('hide');
+        p2Button.classList.remove('hide');
+        p1ButtonMinus.classList.remove('hide');
+        p1Button.classList.remove('hide');
+        p1ChangeName.classList.remove('hide');
+    p2ChangeName.classList.remove('hide');
+if(p1GameOver!=='' && p2GameOver!==''){
+   p1Name.innerText=p1GameOver;
+   p2Name.innerText=p2GameOver;
+}
+
 }
 
 p2NameIn.addEventListener('input', function(){
@@ -115,22 +156,36 @@ p1NameIn.addEventListener('input', function(){
 p1Submit.addEventListener('click', function(){
     p1NameIn.classList.add('hide');
     p1Submit.classList.add('hide');
+    if(p1NameIn.value===''){
+        p1Name.innerText="Player 1"}
 })
 
 p2Submit.addEventListener('click', function(){
     p2NameIn.classList.add('hide');
     p2Submit.classList.add('hide');
+    if(p2NameIn.value===''){
+        p2Name.innerText="Player 2"}
 })
 
 p1ChangeName.addEventListener('click', function(){
-    p1NameIn.classList.remove('hide');
-    p1Submit.classList.remove('hide');
+    p1NameIn.classList.toggle('hide');
+    p1Submit.classList.toggle('hide');
+    if(p1NameIn.value===''){
+        p1Name.innerText="Player 1"}
 
 })
 
 p2ChangeName.addEventListener('click', function(){
-    p2NameIn.classList.remove('hide');
-    p2Submit.classList.remove('hide');
+    p2NameIn.classList.toggle('hide');
+    p2Submit.classList.toggle('hide');
+    if(p2NameIn.value===''){
+        p2Name.innerText="Player 2"}
 
 })
 
+function hideNameSubmit(){
+    p1NameIn.classList.add('hide');
+    p1Submit.classList.add('hide');
+    p2NameIn.classList.add('hide');
+    p2Submit.classList.add('hide');
+}
