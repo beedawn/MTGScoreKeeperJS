@@ -1,19 +1,31 @@
-const p1Button = document.querySelector("#p1Button");
-const p2Button = document.querySelector("#p2Button");
-const p1ButtonMinus = document.querySelector("#p1ButtonMinus");
-const p2ButtonMinus = document.querySelector("#p2ButtonMinus");
-const p1Display = document.querySelector("#p1Display");
-const p2Display = document.querySelector("#p2Display");
-const reset = document.querySelector("#reset");
-const p2NameIn = document.querySelector("#p2NameIn");
-const p2Name = document.querySelector("#p2Name");
-const p1NameIn = document.querySelector("#p1NameIn");
-const p1Name = document.querySelector("#p1Name");
-const p1Submit = document.querySelector("#p1Submit");
-const p2Submit = document.querySelector("#p2Submit");
-const p1ChangeName = document.querySelector("#p1ChangeName");
-const p2ChangeName = document.querySelector("#p2ChangeName");
+const p1  = {
+    id:1,
+    score:20,
+    button: document.querySelector("#p1Button"),
+    buttonMinus: document.querySelector("#p1ButtonMinus"),
+    display: document.querySelector("#p1Display"),
+    nameIn: document.querySelector("#p1NameIn"),
+    name: document.querySelector("#p1Name"),
+    submit: document.querySelector("#p1Submit"),
+    changeName: document.querySelector("#p1ChangeName"),
+    gameOver:("")
+}
 
+const p2 = {
+    id:2,
+    score: 20,
+    button: document.querySelector("#p2Button"),
+    buttonMinus: document.querySelector("#p2ButtonMinus"),
+    display: document.querySelector("#p2Display"),
+    nameIn: document.querySelector("#p2NameIn"),
+    name: document.querySelector("#p2Name"),
+    submit: document.querySelector("#p2Submit"),
+    changeName: document.querySelector("#p2ChangeName"),
+    gameOver:("")
+}
+
+
+const reset = document.querySelector("#reset");
 
 let p1Score = 20;
 let p2Score = 20;
@@ -23,191 +35,158 @@ let p1GameOver = '';
 let p2GameOver = '';
 
 function toggleButtons(){
-    p2ButtonMinus.classList.toggle('hide');
-    p2Button.classList.toggle('hide');
-    p1ButtonMinus.classList.toggle('hide');
-    p1Button.classList.toggle('hide');
-    p1ChangeName.classList.toggle('hide');
-    p2ChangeName.classList.toggle('hide');
+    p2.buttonMinus.classList.toggle('hide');
+    p2.button.classList.toggle('hide');
+    p1.buttonMinus.classList.toggle('hide');
+    p1.button.classList.toggle('hide');
+    p1.changeName.classList.toggle('hide');
+    p2.changeName.classList.toggle('hide');
 
 }
 
 function hideNameSubmit(){
-    p1NameIn.classList.add('hide');
-    p1Submit.classList.add('hide');
-    p2NameIn.classList.add('hide');
-    p2Submit.classList.add('hide');
+    p1.nameIn.classList.add('hide');
+    p1.submit.classList.add('hide');
+    p2.nameIn.classList.add('hide');
+    p2.submit.classList.add('hide');
 }
 
 
-function p1NameHider(){
-    p1NameIn.classList.add('hide');
-    p1Submit.classList.add('hide');
-    if(p1NameIn.value===''){
-        p1Name.innerText="Player 1"}};
+function nameInputHider(player){
+    player.nameIn.classList.add('hide');
+    player.submit.classList.add('hide');
+    if(player.nameIn.value===''){
+        player.name.innerText=`Player ${player.id}`}};
 
-function p2NameHider(){
-    p2NameIn.classList.add('hide');
-    p2Submit.classList.add('hide');
-    if(p2NameIn.value===''){
-        p2Name.innerText="Player 2"}
+function removeColors (player){
+    player.display.classList.remove('winner','loser');
 }
+
 
 function resetFunc(){
-    p1Score = 20;
-        p2Score = 20;
-        
-        p2Display.innerText = p2Score;
-        p1Display.innerText = p1Score;
+        p1.score = 20;
+        p2.score = 20;
+        p2.display.innerText = p2.score;
+        p1.display.innerText = p1.score;
         isGameOver=false;
-        p1Display.classList.remove('winner', 'loser');
-        p2Display.classList.remove('loser', 'winner');
-        p2ButtonMinus.classList.remove('hide');
-        p2Button.classList.remove('hide');
-        p1ButtonMinus.classList.remove('hide');
-        p1Button.classList.remove('hide');
-        p1ChangeName.classList.remove('hide');
-    p2ChangeName.classList.remove('hide');
-if(p1GameOver!=='' && p2GameOver!==''){
-   p1Name.innerText=p1GameOver;
-   p2Name.innerText=p2GameOver;
-}
+        removeColors(p1);
+        removeColors(p2);
+        showButtons(p1);
+        showButtons(p2);
+        p1.name.innerText=p1.gameOver;
+        p2.name.innerText=p2.gameOver;
 
 }
 
-
-p1Button.addEventListener('click', function(){
-    if(!isGameOver){
-        if (p1Score!==losingScore){
-            p1Score+=1;
-            if(p1Score===losingScore){
-                isGameOver=true;
-                hideNameSubmit();
-                p1Display.classList.add('winner');
-                p2Display.classList.add('loser');
-                toggleButtons();
-
-            }
-            p1Display.innerText = p1Score;
+function showButtons(player){
+    player.buttonMinus.classList.remove('hide');
+     player.button.classList.remove('hide');
+     player.changeName.classList.remove('hide');
 }
-}
-}
-)
 
-p2Button.addEventListener('click', function(){
-    if(!isGameOver){
-        if(p2Score!==losingScore){
-            p2Score+=1;
-            if(p2Score===losingScore){
-                isGameOver=true;
-                hideNameSubmit();
-                p2Display.classList.add('winner');
-                p1Display.classList.add('loser');
-                toggleButtons();
-
-            }
-            p2Display.innerText = p2Score;
+function plusScores(player, opponent){
+    {
+        if(!isGameOver){
+            if (player.score!==losingScore){
+                player.score+=1;
+                player.display.innerText = player.score;
     }
-   
-}
-}
-)
-
-p1ButtonMinus.addEventListener('click', function(){
-    if(!isGameOver){
-        if (p1Score!==losingScore){
-            p1Score-=1;
-            if(p1Score===losingScore){
-                isGameOver=true;
-                hideNameSubmit();
-                p1Display.classList.add('loser');
-                p2Display.classList.add('winner');
-                toggleButtons();
-                p1GameOver= p1Name.innerText;
-                p2GameOver= p2Name.innerText;
-                p1Name.innerText = `${p1GameOver}, lost!`;
-                p2Name.innerText = `${p2GameOver}, Won!`;
-            }
-            p1Display.innerText = p1Score;
-}
-}
-}
-)
-
-p2ButtonMinus.addEventListener('click', function(){
-    if(!isGameOver){
-        if(p2Score!==losingScore){
-            p2Score-=1;
-            if(p2Score===losingScore){
-                isGameOver=true;
-                hideNameSubmit();
-                p1Display.classList.add('winner');
-                p2Display.classList.add('loser');
-                toggleButtons();
-               p2GameOver= p2Name.innerText;
-                p1GameOver= p1Name.innerText;
-                p2Name.innerText = `${p2GameOver}, lost!`;
-                p1Name.innerText= `${p1GameOver}, Won!`;
-
-
-            }
-            p2Display.innerText = p2Score;
     }
-   
+    }
+
+}
+
+function minusScores(player,opponent){
+    if(!isGameOver){
+        if (player.score!==losingScore){
+            player.score-=1;
+            if(player.score===losingScore){
+                isGameOver=true;
+                hideNameSubmit();
+                player.display.classList.add('loser');
+                opponent.display.classList.add('winner');
+                toggleButtons();
+                player.gameOver= player.name.innerText;
+                opponent.gameOver= opponent.name.innerText;
+                player.name.innerText = `${player.gameOver}, lost!`;
+                opponent.name.innerText = `${opponent.gameOver}, Won!`;
+                
+            }
+            player.display.innerText = player.score;
 }
 }
-)
+}
+
+function nameChanger(player){
+    player.name.innerText = player.nameIn.value;
+    player.gameOver = player.name.innerText;
+    
+
+}
+
+function nameToggler(player){
+    player.nameIn.classList.toggle('hide');
+    player.submit.classList.toggle('hide');
+    if(player.nameIn.innerText===''){
+        player.name.innerText=`Player ${player.id}`}
+        player.nameIn.value = "";
+        player.gameOver=player.name.innerText;
+
+}
 
 
 
 
+
+p1.button.addEventListener('click', function(){
+    plusScores(p1,p2);
+})
+
+p2.button.addEventListener('click', function(){
+   plusScores(p2,p1);
+})
+
+p1.buttonMinus.addEventListener('click', function(){
+ minusScores(p1,p2);
+})
+
+p2.buttonMinus.addEventListener('click', function(){
+    minusScores(p2,p1);  
+})
 
 reset.addEventListener('click', resetFunc);
 
-
-
-p2NameIn.addEventListener('input', function(){
-    p2Name.innerText = p2NameIn.value;
-
+p2.nameIn.addEventListener('change', function(){
+    nameChanger(p2);
 })
 
-p1NameIn.addEventListener('input', function(){
-    p1Name.innerText = p1NameIn.value;
-
+p1.nameIn.addEventListener('change', function(){
+    nameChanger(p1);
 })
 
-p1Submit.addEventListener('click', function(){
-    p1NameHider();
+p1.submit.addEventListener('click', function(){
+    nameInputHider(p1);
 })
 
-p2Submit.addEventListener('click', function(){
-    p2NameHider();
+p2.submit.addEventListener('click', function(){
+    nameInputHider(p2);
 })
 
-
-p1NameIn.addEventListener('keyup', function(event){
+p1.nameIn.addEventListener('keyup', function(event){
     if(event.code === 'Enter'){
-        p1NameHider();}
+        nameInputHider(p1);}
 })
 
-p2NameIn.addEventListener('keyup', function(event){
+p2.nameIn.addEventListener('keyup', function(event){
     if(event.code === 'Enter'){
-        p2NameHider();}
+        nameInputHider(p2);}
 })
 
-p1ChangeName.addEventListener('click', function(){
-    p1NameIn.classList.toggle('hide');
-    p1Submit.classList.toggle('hide');
-    if(p1NameIn.value===''){
-        p1Name.innerText="Player 1"}
-
+p1.changeName.addEventListener('click', function(){
+    nameToggler(p1);
 })
 
-p2ChangeName.addEventListener('click', function(){
-    p2NameIn.classList.toggle('hide');
-    p2Submit.classList.toggle('hide');
-    if(p2NameIn.value===''){
-        p2Name.innerText="Player 2"}
-
+p2.changeName.addEventListener('click', function(){
+    nameToggler(p2);
 })
 
