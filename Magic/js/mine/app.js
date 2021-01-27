@@ -34,20 +34,19 @@ let isGameOver = false;
 
 
 function toggleButtons(){
-    p2.buttonMinus.classList.toggle('hide');
-    p2.button.classList.toggle('hide');
-    p1.buttonMinus.classList.toggle('hide');
-    p1.button.classList.toggle('hide');
-    p1.changeName.classList.toggle('hide');
-    p2.changeName.classList.toggle('hide');
+    for (let p of [p1,p2]){
+        p.buttonMinus.classList.toggle('hide');
+        p.button.classList.toggle('hide');
+        p.changeName.classList.toggle('hide');
+        }
 
 }
 
 function hideNameSubmit(){
-    p1.nameIn.classList.add('hide');
-    p1.submit.classList.add('hide');
-    p2.nameIn.classList.add('hide');
-    p2.submit.classList.add('hide');
+    for(let p of [p1,p2]){
+    p.nameIn.classList.add('hide');
+    p.submit.classList.add('hide');
+    }
 }
 
 
@@ -63,17 +62,15 @@ function removeColors (player){
 
 
 function resetFunc(){
-        p1.score = 20;
-        p2.score = 20;
-        p2.display.innerText = p2.score;
-        p1.display.innerText = p1.score;
+        
+    for(let p of [p1,p2]){
+        p.score = 20;
+        p.display.innerText = p.score;
         isGameOver=false;
-        removeColors(p1);
-        removeColors(p2);
-        showButtons(p1);
-        showButtons(p2);
-        p1.name.innerText=p1.gameOver;
-        p2.name.innerText=p2.gameOver;
+        removeColors(p);
+        showButtons(p);
+        p.name.innerText=p.gameOver;
+    }
 
 }
 
