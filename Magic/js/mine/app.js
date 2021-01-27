@@ -31,8 +31,7 @@ let p1Score = 20;
 let p2Score = 20;
 let losingScore = 0;       
 let isGameOver = false;
-let p1GameOver = '';
-let p2GameOver = '';
+
 
 function toggleButtons(){
     p2.buttonMinus.classList.toggle('hide');
