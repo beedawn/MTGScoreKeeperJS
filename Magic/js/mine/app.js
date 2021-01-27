@@ -8,7 +8,7 @@ const p1  = {
     name: document.querySelector("#p1Name"),
     submit: document.querySelector("#p1Submit"),
     changeName: document.querySelector("#p1ChangeName"),
-    gameOver:("")
+    gameOver:("Player 1")
 }
 
 const p2 = {
@@ -21,7 +21,7 @@ const p2 = {
     name: document.querySelector("#p2Name"),
     submit: document.querySelector("#p2Submit"),
     changeName: document.querySelector("#p2ChangeName"),
-    gameOver:("")
+    gameOver:("Player 2")
 }
 
 
